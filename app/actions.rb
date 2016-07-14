@@ -8,7 +8,7 @@ post '/gateway' do
   puts message
   action, repo = message.split('_').map {|c| c.strip.downcase }
   puts action
-  puts repo
+  puts repo.inspect
   # repo_url = "https://api.github.com/repos/#{repo}"
 
   # case action
