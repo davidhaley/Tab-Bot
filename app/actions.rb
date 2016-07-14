@@ -1,3 +1,5 @@
+require 'httparty'
+
 # Homepage (Root path)
 get '/' do
   erb :index
