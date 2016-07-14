@@ -2,7 +2,11 @@ class Timer
   include SuckerPunch::Job
   # workers 1
 
-  def perform(message)
-    message
+  def perform(repo_url)
+    resp = HTTParty.get(repo_url)
+    # puts resp
+    resp = JSON.parse resp.body
+    interval = 5
+    respond_message("There are #{resp['open_issues_count']} open issues on #{repo}. Time interval = #{interval}")
   end
 end
