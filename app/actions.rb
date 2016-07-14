@@ -8,19 +8,20 @@ end
 # Receive Slack POST request, remove Slackbot trigger word. 
 post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
-  puts message
+  # puts message
   action, repo = message.split('_').map {|c| c.strip.downcase }
-  puts action
-  puts repo.inspect
+  # puts action
+  # puts repo.inspect
   repo_url = "https://api.github.com/repos/#{repo}"
 
   case action
     when 'issues'
       resp = HTTParty.get(repo_url)
-      puts resp
+      # puts resp
       resp = JSON.parse resp.body
-      puts resp
-      respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
+      # puts resp
+      interval = 60
+      Timer.perform_in(interval, (respond_message("There are #{resp['open_issues_count']} open issues on #{repo}. Time interval = #{interval}")))
   end
 end
 
