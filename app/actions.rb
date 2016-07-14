@@ -21,10 +21,11 @@ post '/gateway' do
       resp = JSON.parse resp.body
       puts resp
       respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
+      Timer.perform_in(5)
   end
 end
 
 def respond_message message
-  # content_type :json
+  content_type :json
   {:text => message}.to_json
 end
