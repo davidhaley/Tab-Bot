@@ -16,12 +16,9 @@ post '/gateway' do
 
   case action
     when 'issues'
-      resp = HTTParty.get(repo_url)
       # puts resp
-      resp = JSON.parse resp.body
-      # puts resp
-      interval = 60
-      Timer.perform_in(interval, (respond_message("There are #{resp['open_issues_count']} open issues on #{repo}. Time interval = #{interval}")))
+      interval = 5
+      Timer.perform_in(interval, repo_url)
   end
 end
 
