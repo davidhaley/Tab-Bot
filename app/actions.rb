@@ -16,7 +16,9 @@ post '/gateway' do
   case action
     when 'issues'
       resp = HTTParty.get(repo_url)
+      puts resp
       resp = JSON.parse resp.body
+      puts resp
       respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
   end
 end
