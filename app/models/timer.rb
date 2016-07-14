@@ -7,6 +7,8 @@ class Timer
     # puts resp
     resp = JSON.parse resp.body
     interval = 5
-    respond_message("There are #{resp['open_issues_count']} open issues on #{repo}. Time interval = #{interval}")
+    respond_message("Time interval = #{interval}")
   end
 end
+
+# respond_message("There are #{resp['open_issues_count']} open issues on #{}. Time interval = #{interval}")
