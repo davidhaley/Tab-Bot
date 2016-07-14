@@ -16,13 +16,15 @@ post '/gateway' do
 
   case action
     when 'issues'
-      # puts resp
-      interval = 5
-      Timer.perform_in(interval, repo_url)
+      resp = HTTParty.get(repo_url)
+      puts resp
+      resp = JSON.parse resp.body
+      puts resp
+      respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
   end
 end
 
 def respond_message message
-#  content_type :json
+  content_type :json
   {:text => message}.to_json
 end
