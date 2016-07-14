@@ -12,6 +12,7 @@ gem 'puma'
 gem 'tux'
 
 gem 'json'
+gem 'httparty'
 
 # These gems are only installed when run as `bundle install --without production`
 group :development, :test do
