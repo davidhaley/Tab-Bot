@@ -5,6 +5,7 @@ get '/' do
   erb :index
 end
 
+# Receive Slack POST request, remove Slackbot trigger word. 
 post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
   puts message
