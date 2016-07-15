@@ -19,6 +19,7 @@ class Worker
       end
       @team.timer.reload
     end
+    team.timer.destroy
   end
 
   def stop
