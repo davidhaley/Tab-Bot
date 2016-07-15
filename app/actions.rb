@@ -5,13 +5,15 @@ get '/' do
   erb :index
 end
 
-# Receive Slack POST request, remove Slackbot trigger word. 
+# Receive Slack POST request, remove Slackbot trigger word, assign action word to variable.
 post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
   action, repo = message.split('_').map {|c| c.strip.downcase }
+
   # repo_url = "https://api.github.com/repos/#{repo}"
 
   case action
+    # Start the timer.
     when 'start'
       # resp = HTTParty.get(repo_url)
       # puts resp
@@ -19,8 +21,10 @@ post '/gateway' do
       # puts resp
       # respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
       # Message.perform_in(5)
-      timer = Timer.create(interval: 5)
-      log = Log.create(notified_at: DateTime.now, timer_id: timer.id)
+
+      Timer.create(interval: 30)
+      Log.create(notified_at: DateTime.now, timer_id: timer.id)
+      Worker.new
   end
 end
 
@@ -29,12 +33,12 @@ def respond_message message
   {:text => message}.to_json
 end
 
-Thread.new do
-  puts "testing outside"
-  loop do  
-    # Log.create(notified_at: DateTime.now)
+# Thread.new do
+#   puts "testing outside"
+#   loop do  
+#     # Log.create(notified_at: DateTime.now)
 
-    puts "testing inside"
-    sleep(1)
-  end
-end
+#     puts "testing inside"
+#     sleep(1)
+#   end
+# end
