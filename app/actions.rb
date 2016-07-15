@@ -16,12 +16,12 @@ post '/gateway' do
   repo_url = "https://api.github.com/repos/#{repo}"
 
   case action
-    when 'issues'
-      resp = HTTParty.get(repo_url)
-      puts resp
-      resp = JSON.parse resp.body
-      puts resp
-      respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
+    when 'start'
+      # resp = HTTParty.get(repo_url)
+      # puts resp
+      # resp = JSON.parse resp.body
+      # puts resp
+      # respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
       Timer.perform_in(5)
   end
 end
