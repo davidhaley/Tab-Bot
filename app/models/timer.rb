@@ -6,7 +6,7 @@ class Timer
 
   def perform
     HTTParty.post("https://hooks.slack.com/services/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", 
-    :body => { "channel": "#general", "username": "webhookbot", "text": "This is posted to #general and comes from a bot named tab-bot. Take a break!", "icon_emoji": ":ghost:"}.to_json,
+    :body => { "channel": "#general", "username": "webhookbot", "text": "You've been working for a while! Make sure you take a break! [This is posted to #general and comes from a bot named tab-bot]", "icon_emoji": ":ghost:"}.to_json,
     :headers => { 'Content-Type' => 'application/json' } )
     # if working
     #   Timer.perform_in(1, false)
