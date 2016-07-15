@@ -18,10 +18,11 @@ post '/gateway' do
   puts "TEAM: #{team.inspect}"
   if team.timer.nil?
     team.timer = Timer.create(interval: interval)
-    puts team.timer.inspect
     # team.save
   end
   #puts "TIMER: #{team.timer.inspect}"
+
+  puts team.timer.inspect
 
   case action
     # Start the timer.
