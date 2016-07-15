@@ -13,7 +13,6 @@ post '/gateway' do
   # repo_url = "https://api.github.com/repos/#{repo}"
   puts "HELLO"
   team = Team.find_or_create_by(name: team_name)
-  puts "WORLD"
   team.timer.create if team.timer.nil?
 
   case action
@@ -27,7 +26,7 @@ post '/gateway' do
       # Message.perform_in(5).team.
       timer.team.running = true
       timer.team.running.save
-
+  puts "WORLD"
 #      Timer.create(interval: 30)
       Log.create(notified_at: DateTime.now, timer_id: timer.id)
       @worker = Worker.new
