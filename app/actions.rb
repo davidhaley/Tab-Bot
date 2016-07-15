@@ -26,7 +26,7 @@ post '/gateway' do
       Log.create(notified_at: DateTime.now)
       worker = Worker.new
     when 'stop'
-      worker.stop
+      Worker.stop
   end
 end
 
