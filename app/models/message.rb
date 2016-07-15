@@ -1,3 +1,6 @@
+require 'sucker_punch'
+require 'httparty'
+
 class Message
   include SuckerPunch::Job
   # workers 1

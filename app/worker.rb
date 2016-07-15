@@ -8,15 +8,27 @@ require 'sinatra/contrib/all'
 require 'active_record'
 require_relative '../config/database'
 require 'json'
+require_relative 'models/message'
+require 'sucker_punch'
 
+Timer.create(interval: 20)
+Log.create(notified_at: DateTime.now)
 
 # check for the next time to send message
 
 class Worker
   def initialize
     loop do
-      Log.create(notified_at: DateTime.now)
-      # sleep
+      puts "starting loop"
+      if DateTime.now < Log.last.notified_at + Timer.last.interval.seconds
+        sleep(5)
+        puts "sleeping for 5 seconds"
+      else
+        puts "performing message"
+        Message.perform_in(1)
+        Timer.create(interval: 20)
+        Log.create(notified_at: DateTime.now)
+      end
     end
   end
 end
