@@ -37,7 +37,7 @@ class Worker
         Timer.create(interval: 10)
         Log.create(notified_at: DateTime.now)
       end
-      @timer.reload
+      @team.timer.reload
     end
   end
 
