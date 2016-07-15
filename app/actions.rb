@@ -16,7 +16,7 @@ post '/gateway' do
   puts "TEAM: #{team.inspect}"
   if team.timer.nil?
     team.timer = Timer.create(interval: 10)
-    team.save
+    # team.save
   end
   puts "TIMER: #{team.timer.inspect}"
 
@@ -30,7 +30,7 @@ post '/gateway' do
       # respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
       # Message.perform_in(5).team.
       team.timer.running = true
-      team.timer.running.save
+      team.timer.save
   puts "WORLD"
 #      Timer.create(interval: 30)
       Log.create(notified_at: DateTime.now, timer_id: timer.id)
