@@ -34,7 +34,7 @@ post '/gateway' do
 
 
 #      Timer.create(interval: 30)
-      Log.create(notified_at: DateTime.now)
+      Log.create!(notified_at: DateTime.now)
       puts "after log"
       @worker = Worker.new(team)
       puts "after worker"       
