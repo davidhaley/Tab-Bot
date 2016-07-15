@@ -23,7 +23,7 @@ post '/gateway' do
       # Message.perform_in(5)
 
       Timer.create(interval: 30)
-      Log.create(notified_at: DateTime.now, timer_id: timer.id)
+      Log.create(notified_at: DateTime.now)
       worker = Worker.new
     when 'stop'
       worker.stop
