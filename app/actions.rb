@@ -14,8 +14,8 @@ post '/gateway' do
   puts "HELLO"
   team = Team.find_or_create_by(name: team_name)
   puts "TEAM: #{team.inspect}"
-  puts "TIMER: #{team.timer.inspect}"
   team.timer.create if team.timer.nil?
+  puts "TIMER: #{team.timer.inspect}"
 
   case action
     # Start the timer.
