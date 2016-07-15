@@ -34,7 +34,7 @@ class Worker
     end
   end
 
-  def stop
+  def self.stop
     @running = false
   end
 end
