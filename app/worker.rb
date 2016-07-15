@@ -25,15 +25,13 @@ class Worker
   end
 
   def start
-    puts "WORKING"
- #   while @running do
     while @team.timer.running
       puts DateTime.now
       if DateTime.now < Log.last.notified_at + @team.timer.interval.seconds
         sleep(2)
         puts "sleeping for 2 seconds"
       else
-        puts "performing message"
+        puts "performing message at #{Time.now}"
         Message.perform_in(1)
         Timer.create(interval: @interval)
         Log.create(notified_at: DateTime.now)
