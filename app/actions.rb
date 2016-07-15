@@ -10,6 +10,10 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
   action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
 
+  interval = interval.to_i
+  puts "#{interval.inspect}"
+  puts "#{interval.class}"
+
   team = Team.find_or_create_by(name: team_name)
 
   if team.timer.nil?
