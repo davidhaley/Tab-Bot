@@ -13,6 +13,8 @@ post '/gateway' do
   # repo_url = "https://api.github.com/repos/#{repo}"
   puts "HELLO"
   team = Team.find_or_create_by(name: team_name)
+  puts "TEAM: #{team.inspect}"
+  puts "TIMER: #{team.timer.inspect}"
   team.timer.create if team.timer.nil?
 
   case action
