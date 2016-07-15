@@ -18,7 +18,7 @@ post '/gateway' do
     team.timer = Timer.create(interval: 10)
     # team.save
   end
-  puts "TIMER: #{team.timer.inspect}"
+  #puts "TIMER: #{team.timer.inspect}"
 
   case action
     # Start the timer.
