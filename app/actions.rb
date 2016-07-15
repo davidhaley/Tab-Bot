@@ -8,14 +8,14 @@ end
 # Receive Slack POST request, remove Slackbot trigger word, assign action word to variable.
 post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
-  action, team_name = message.split('_').map {|c| c.strip.downcase }
+  action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
 
   # repo_url = "https://api.github.com/repos/#{repo}"
   puts "HELLO"
   team = Team.find_or_create_by(name: team_name)
   puts "TEAM: #{team.inspect}"
   if team.timer.nil?
-    team.timer = Timer.create(interval: 10)
+    team.timer = Timer.create(interval: interval)
     # team.save
   end
   #puts "TIMER: #{team.timer.inspect}"
@@ -36,7 +36,7 @@ post '/gateway' do
 #      Timer.create(interval: 30)
       Log.create!(notified_at: DateTime.now)
       puts "after log"
-      @worker = Worker.new(team)
+      @worker = Worker.new(team, interval)
       puts "after worker"       
 
       @worker.start

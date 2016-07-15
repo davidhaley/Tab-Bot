@@ -18,9 +18,10 @@
 
 class Worker
 
-  def initialize(team)
+  def initialize(team, interval)
     @running = true
     @team = team
+    @interval = interval
   end
 
   def start
@@ -34,7 +35,7 @@ class Worker
       else
         puts "performing message"
         Message.perform_in(1)
-        Timer.create(interval: 10)
+        Timer.create(interval: @interval)
         Log.create(notified_at: DateTime.now)
       end
       @team.timer.reload
