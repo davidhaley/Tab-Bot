@@ -10,7 +10,7 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 
 require 'json'
 require_relative '../app/worker'
-require_relative '../models/timer'
+require_relative '../app/models/timer'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
