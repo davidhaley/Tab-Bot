@@ -10,6 +10,10 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
   action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
 
+  puts action
+  puts team_name
+  puts interval
+
   # repo_url = "https://api.github.com/repos/#{repo}"
   puts "HELLO"
   team = Team.find_or_create_by(name: team_name)
