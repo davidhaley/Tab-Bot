@@ -31,12 +31,13 @@ post '/gateway' do
       # Message.perform_in(5).team.
       team.timer.running = true
       team.timer.save
-              puts "WORLD"
 
 
 #      Timer.create(interval: 30)
-      Log.create(notified_at: DateTime.now, timer_id: team.timer.id)
-      @worker = Worker.new
+      Log.create(notified_at: DateTime.now)
+      @worker = Worker.new(team)
+                    puts "WORLD"
+
       @worker.start
     when 'stop'
       team.timer.running = false
