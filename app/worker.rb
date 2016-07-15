@@ -28,7 +28,7 @@ class Worker
     puts "WORKING"
  #   while @running do
     while @team.timer.running
-      puts "starting loop"
+      puts DateTime.now
       if DateTime.now < Log.last.notified_at + @team.timer.interval.seconds
         sleep(2)
         puts "sleeping for 2 seconds"
