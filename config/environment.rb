@@ -11,7 +11,7 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 require 'json'
 require_relative '../app/worker'
 require_relative '../app/models/timer'
-#require_relative '../models/team'
+require_relative '../app/models/team'
 #require_relative '../app/models/message'
 #require_relative '../app/models/log'
 
