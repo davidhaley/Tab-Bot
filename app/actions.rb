@@ -8,11 +8,9 @@ end
 # Receive Slack POST request, remove Slackbot trigger word, assign action word to variable.
 post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
+  puts message
   action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
-
-  puts action
-  puts team_name
-  puts interval
+  puts interval.inspect
 
   # repo_url = "https://api.github.com/repos/#{repo}"
   puts "HELLO"
