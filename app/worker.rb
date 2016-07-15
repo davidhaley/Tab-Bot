@@ -18,12 +18,14 @@
 
 class Worker
 
-  def initialize
+  def initialize(team)
     @running = true
+    @team = team
   end
 
   def start
-    while @running do
+ #   while @running do
+    while @team.timer.running
       puts "starting loop"
       if DateTime.now < Log.last.notified_at + Timer.last.interval.seconds
         sleep(2)
@@ -34,6 +36,7 @@ class Worker
         Timer.create(interval: 10)
         Log.create(notified_at: DateTime.now)
       end
+      @timer.reload
     end
   end
 
