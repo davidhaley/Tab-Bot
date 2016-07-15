@@ -24,7 +24,9 @@ post '/gateway' do
 
       Timer.create(interval: 30)
       Log.create(notified_at: DateTime.now, timer_id: timer.id)
-      Worker.new
+      worker = Worker.new
+    when 'stop'
+      worker.stop
   end
 end
 
