@@ -22,7 +22,7 @@ class Worker
     @running = true
   end
 
-  def self.start
+  def start
     while @running do
       puts "starting loop"
       if DateTime.now < Log.last.notified_at + Timer.last.interval.seconds
@@ -37,7 +37,7 @@ class Worker
     end
   end
 
-  def self.stop
+  def stop
     @running = false
   end
 end
