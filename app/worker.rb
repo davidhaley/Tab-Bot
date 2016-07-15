@@ -17,9 +17,12 @@
 # check for the next time to send message
 
 class Worker
+
   def initialize
     @running = true
+  end
 
+  def self.start
     while @running do
       puts "starting loop"
       if DateTime.now < Log.last.notified_at + Timer.last.interval.seconds
