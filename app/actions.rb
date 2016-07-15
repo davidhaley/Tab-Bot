@@ -11,8 +11,9 @@ post '/gateway' do
   action, team_name = message.split('_').map {|c| c.strip.downcase }
 
   # repo_url = "https://api.github.com/repos/#{repo}"
-
+  puts "HELLO"
   team = Team.find_or_create_by(name: team_name)
+  puts "WORLD"
   team.timer.create if team.timer.nil?
 
   case action
