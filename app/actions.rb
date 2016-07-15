@@ -10,10 +10,6 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
   action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
 
-  puts action.inspect
-  puts team_name.inspect
-  puts interval.inspect
-
   team = Team.find_or_create_by(name: team_name)
 
   if team.timer.nil?
@@ -22,16 +18,14 @@ post '/gateway' do
 
   case action
     when 'start'
-      puts action.inspect
-      puts team_name.inspect
-      puts interval.inspect
+
+      puts "INTERVAL IS #{interval.inspect}"
 
       team.timer.running = true
       team.timer.save
 
       Log.create(notified_at: DateTime.now)
       @worker = Worker.new(team, interval)
-      puts "worker is #{@worker.inspect}"
 
       @worker.start
     when 'stop'
