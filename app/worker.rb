@@ -24,6 +24,7 @@ class Worker
   end
 
   def start
+    puts "WORKING"
  #   while @running do
     while @team.timer.running
       puts "starting loop"

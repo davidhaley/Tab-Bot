@@ -39,10 +39,10 @@ post '/gateway' do
   end
 end
 
-def respond_message message
-  content_type :json
-  {:text => message}.to_json
-end
+# def respond_message message
+#   content_type :json
+#   {:text => message}.to_json
+# end
 
 # Thread.new do
 #   puts "testing outside"
