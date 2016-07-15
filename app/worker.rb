@@ -26,12 +26,12 @@ class Worker
     while @running do
       puts "starting loop"
       if DateTime.now < Log.last.notified_at + Timer.last.interval.seconds
-        sleep(5)
-        puts "sleeping for 5 seconds"
+        sleep(2)
+        puts "sleeping for 2 seconds"
       else
         puts "performing message"
         Message.perform_in(1)
-        Timer.create(interval: 20)
+        Timer.create(interval: 10)
         Log.create(notified_at: DateTime.now)
       end
     end
