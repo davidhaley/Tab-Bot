@@ -25,13 +25,13 @@ post '/gateway' do
       puts action.inspect
       puts team_name.inspect
       puts interval.inspect
-      
+
       team.timer.running = true
       team.timer.save
 
       Log.create(notified_at: DateTime.now)
       @worker = Worker.new(team, interval)
-      puts "interval is #{interval}"
+      puts "worker is #{@worker.inspect}"
 
       @worker.start
     when 'stop'
