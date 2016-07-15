@@ -30,8 +30,9 @@ post '/gateway' do
       # respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
       # Message.perform_in(5).team.
       team.timer.running = true
+        puts "WORLD"
       team.timer.save
-  puts "WORLD"
+
 #      Timer.create(interval: 30)
       Log.create(notified_at: DateTime.now, timer_id: timer.id)
       @worker = Worker.new
