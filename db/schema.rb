@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715031057) do
+ActiveRecord::Schema.define(version: 20160715191905) do
 
   create_table "logs", force: :cascade do |t|
     t.datetime "notified_at"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160715031057) do
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "running",    default: true
   end
 
 end
