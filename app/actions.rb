@@ -10,7 +10,7 @@ post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
   action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
 
-  team_name ||= team1
+  team_name ||= "team1"
   interval ||= 30
 
   interval = interval.to_i
