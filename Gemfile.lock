@@ -17,6 +17,7 @@ GEM
     bond (0.5.1)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
+    eventmachine (1.2.0.1)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -81,6 +82,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  eventmachine
   httparty
   json
   pg

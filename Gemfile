@@ -14,6 +14,7 @@ gem 'tux'
 gem 'json'
 gem 'httparty'
 gem 'sucker_punch', '~> 2.0'
+gem 'eventmachine'
 
 # These gems are only installed when run as `bundle install --without production`
 group :development, :test do
