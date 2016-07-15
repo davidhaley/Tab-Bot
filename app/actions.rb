@@ -29,8 +29,8 @@ post '/gateway' do
       # puts resp
       # respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
       # Message.perform_in(5).team.
-      timer.team.running = true
-      timer.team.running.save
+      team.timer.running = true
+      team.timer.running.save
   puts "WORLD"
 #      Timer.create(interval: 30)
       Log.create(notified_at: DateTime.now, timer_id: timer.id)
