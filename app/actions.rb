@@ -18,11 +18,23 @@ post '/gateway' do
       # resp = JSON.parse resp.body
       # puts resp
       # respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
-      Timer.perform_in(5)
+      # Message.perform_in(5)
+      timer = Timer.create(interval: 5)
+      log = Log.create(notified_at: DateTime.now, timer_id: timer.id)
   end
 end
 
 def respond_message message
   content_type :json
   {:text => message}.to_json
+end
+
+Thread.new do
+  puts "testing outside"
+  loop do  
+    # Log.create(notified_at: DateTime.now)
+
+    puts "testing inside"
+    sleep(1)
+  end
 end
