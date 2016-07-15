@@ -11,10 +11,6 @@ post '/gateway' do
   # puts message
   action, repo = message.split('_').map {|c| c.strip.downcase }
 
-  if action == "stop"
-    Timer.perform(working=false)
-  end
-
   # puts action
   # puts repo.inspect
   repo_url = "https://api.github.com/repos/#{repo}"
