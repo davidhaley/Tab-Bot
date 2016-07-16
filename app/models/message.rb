@@ -6,7 +6,7 @@ class Message
 
   def perform(greeting=nil)
     if greeting == "start"
-      message = "...TaB-bot ONLINE!"
+      message = "...TaB-bot ONLINE! \n Team: #{@team.name} | Break Timer: #{@team.timer.interval}"
     elsif greeting == "stop"
       message = "...TaB-bot OFFLINE!"
     else

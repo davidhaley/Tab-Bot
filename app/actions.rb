@@ -24,8 +24,6 @@ post '/gateway' do
   case action
     when 'start'
 
-      greeting = "TaB-bot ONLINE! Team: #{team_name} | Break Timer: #{interval.to_s}"
-
       team.timer.running = true
       team.timer.save
 
