@@ -26,6 +26,8 @@ post '/gateway' do
 
   if team.timer.nil?
     team.timer = Timer.create(interval: interval)
+  else
+    team.timer.update(interval: interval)
   end
 
   case action
