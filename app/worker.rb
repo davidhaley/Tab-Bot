@@ -14,10 +14,11 @@ class Worker
         sleep(2)
       else
         Message.perform_in(1)
-        Timer.create(interval: @interval)
+        # Timer.create(interval: @interval)
         Log.create(notified_at: DateTime.now)
+        @team.timer.reload
       end
-      @team.timer.reload
+      # @team.timer.reload
     end
     @team.timer.destroy
   end
