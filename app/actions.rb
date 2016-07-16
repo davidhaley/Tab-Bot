@@ -35,6 +35,7 @@ post '/gateway' do
       Message.perform_in(1, "start")
       @worker.start
     when 'stop'
+      Message.perform_in(1, "stop")
       team.timer.running = false
       team.timer.save
   end
