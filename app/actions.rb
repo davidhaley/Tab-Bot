@@ -43,8 +43,8 @@ post '/gateway' do
       @worker.start
     when 'stop'
       Message.perform_in(1, "stop")
-      team.timer.update(running: false)
-      team.timer.save
+      team.timer.update!(running: false)
+      team.timer.save!
     else
       Message.perform_in(1, "help")
   end
