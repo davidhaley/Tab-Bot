@@ -9,6 +9,8 @@ class Message
       message = "...TaB-bot ONLINE!\n\nWelcome #{team}! Get to work.. You'll be hearing from me in #{interval / 60} minutes!"
     elsif greeting == "stop"
       message = "...TaB-bot OFFLINE!"
+    elsif greeting == "help"
+      message = "Welcome to help!\n\n_'tab-bot: *action* *team-name* *break-timer interval in minutes*_'\n\n Examples: _'tab-bot: start' to start with default settings (team name: team1, break timer: 2 minutes)_\n\n _'tab-bot: start team-amazing 5'_"
     else
       message = "Hey team! You've been working for a while! Have a break!\n\n#{(Time.now + 18*60*60).strftime("%Y-%m-%d %H:%M:%S")}"
     end
