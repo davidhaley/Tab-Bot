@@ -8,11 +8,18 @@ end
 # Receive Slack POST request, remove Slackbot trigger word, assign action word to variable.
 post '/gateway' do
   message = params[:text].gsub(params[:trigger_word], '').strip
-  action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
+  # action, team_name, interval = message.split(' ').map {|c| c.strip.downcase }
 
-  team_name ||= "team1"
+  input = message.split(' ').map {|c| c.strip.downcase }
+  action = input.shift
+  interval = input.pop
+  team_name = input.join(" ")
+
+  if team_name.nil? || team_name.strip.empty?
+    team_name = "team1"
+  end
+
   interval ||= 1
-
   interval = interval.to_i * 60
 
   team = Team.find_or_create_by(name: team_name)
