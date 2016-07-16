@@ -32,9 +32,9 @@ post '/gateway' do
       Log.create(notified_at: DateTime.now)
       @worker = Worker.new(team, interval)
 
-      @worker.start(greeting)
+      Message.perform_in(1, "start")
+      @worker.start
     when 'stop'
-      @worker.stop(greeting)
       team.timer.running = false
       team.timer.save
   end
