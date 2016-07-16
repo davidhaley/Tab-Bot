@@ -17,9 +17,8 @@ post '/gateway' do
   team_name = "team"
 
   interval ||= 1
-  if interval.to_s.size > 4
-    begin
-      Message.perform_in(1, "interval_count")
+  
+  if interval.to_s.size < 5
     interval = interval.to_i * 60
 
     team = Team.find_or_create_by(name: team_name)
@@ -31,25 +30,25 @@ post '/gateway' do
     end
 
     case action
-    when 'start'
+      when 'start'
 
-      team.timer.running = true
-      team.timer.save
+        team.timer.running = true
+        team.timer.save
 
-      Log.create(notified_at: DateTime.now)
-      @worker = Worker.new(team, interval)
+        Log.create(notified_at: DateTime.now)
+        @worker = Worker.new(team, interval)
 
-      Message.perform_in(1, "start", team_name, interval)
-      @worker.start
-    when 'stop'
-      Message.perform_in(1, "stop")
-      team.timer.update(running: false)
-      team.timer.save
-    else
-      Message.perform_in(1, "help")
+        Message.perform_in(1, "start", team_name, interval)
+        @worker.start
+      when 'stop'
+        Message.perform_in(1, "stop")
+        team.timer.update(running: false)
+        team.timer.save
+      else
+        Message.perform_in(1, "help")
     end
-    rescue
-      Message.perform_in(1, "help")
-    end
+  else
+    Message.perform_in(1, "interval_count")
+    Message.perform_in(1, "help")
   end
 end
