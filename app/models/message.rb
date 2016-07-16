@@ -10,7 +10,7 @@ class Message
     elsif greeting == "stop"
       message = "...TaB-bot OFFLINE!"
     elsif greeting == "help"
-      message = "Welcome to help!\n\n_'tab-bot: [start|stop|help] [team-name] [break-interval-in-minutes]_'\n\n_[team-name] optional:default=Team1_\n_[break-interval-in-minutes] optional:default=2_\n\nexample: _*tab-bot: start team-amazing 60*_\n\nstarts 'tab-bot' for 'team-amazing' with a break-timer of '60 minutes'"
+      message = "Welcome to help!\n\n_tab-bot:  [start|stop|help]  [team-name]  [break-interval-in-minutes]_\n\n_[team-name] optional:default=Team1_\n_[break-interval-in-minutes] optional:default=2_\n\nexample1: _*tab-bot: start*_\n\nstarts 'tab-bot' for 'team1' (default) with a break-timer of '2 minutes (default)'\nexample2: _*tab-bot: start team-amazing 60*_\n\nstarts 'tab-bot' for 'team-amazing' with a break-timer of '60 minutes'"
     else
       message = "Hey team! You've been working for a while! Have a break!\n\n#{(Time.now + 18*60*60).strftime("%Y-%m-%d %H:%M:%S")}"
     end
