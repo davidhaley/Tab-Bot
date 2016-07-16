@@ -10,7 +10,7 @@ class Message
     elsif greeting == "stop"
       message = "...TaB-bot OFFLINE!"
     else
-      message = "Hey team! You've been working for a while! Have a break!\n\n#{(Time.now + 16*60*60).strftime("%Y-%m-%d %H:%M:%S")}"
+      message = "Hey team! You've been working for a while! Have a break!\n\n#{(Time.now + 18*60*60).strftime("%Y-%m-%d %H:%M:%S")}"
     end
     puts "performing message at #{Time.now}"
     HTTParty.post("https://hooks.slack.com/services/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", 
