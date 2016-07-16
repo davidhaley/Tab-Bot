@@ -18,10 +18,13 @@ post '/gateway' do
 
   interval ||= 1
   if interval.to_s.size > 4
-    Message.perform_in(1, "interval_count")
-    Message.perform_in(1, "help")
+    begin
+      Message.perform_in(1, "interval_count")
+    rescue
+      Message.perform_in(1, "help")
+    end
   end
-  
+
   interval = interval.to_i * 60
 
   team = Team.find_or_create_by(name: team_name)
