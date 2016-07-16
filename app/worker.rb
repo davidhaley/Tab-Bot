@@ -18,8 +18,9 @@ class Worker
         Log.create(notified_at: DateTime.now)
         @team.timer.reload
       end
-      # @team.timer.reload
+      @team.timer.reload
     end
+    @team.timer.reload
     @team.timer.destroy
   end
 
