@@ -13,7 +13,7 @@ class Worker
         puts "sleeping for 2 seconds"        
         sleep(2)
       else
-        Message.perform_in(1)
+        Message.perform_in(1, @interval)
         Timer.create(interval: @interval)
         Log.create(notified_at: DateTime.now)
       end
