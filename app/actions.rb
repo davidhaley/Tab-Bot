@@ -17,7 +17,7 @@ post '/gateway' do
   team_name = "team"
 
   interval ||= 1
-  
+
   if interval.to_s.size < 5
     interval = interval.to_i * 60
 
@@ -49,6 +49,6 @@ post '/gateway' do
     end
   else
     Message.perform_in(1, "interval_count")
-    Message.perform_in(1, "help")
+    Message.perform_in(2, "help")
   end
 end
