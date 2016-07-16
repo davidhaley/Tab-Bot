@@ -13,13 +13,8 @@ post '/gateway' do
   input = message.split(' ').map {|c| c.strip.downcase }
   action = input.shift
   interval = input.pop
-  # team_name = input.join(" ")
 
-  # if team_name.nil? || team_name.strip.empty?
-  #   team_name = "team1"
-  # end
-
-  team_name = "team1"
+  team_name = "team"
 
   interval ||= 1
   interval = interval.to_i * 60
