@@ -30,7 +30,7 @@ post '/gateway' do
       Log.create(notified_at: DateTime.now)
       @worker = Worker.new(team, interval)
 
-      Message.perform_in(1, "start")
+      Message.perform_in(1, "start", team_name)
       @worker.start
     when 'stop'
       Message.perform_in(1, "stop")

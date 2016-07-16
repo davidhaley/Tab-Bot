@@ -4,7 +4,7 @@ require 'httparty'
 class Message
   include SuckerPunch::Job
 
-  def perform(greeting=nil)
+  def perform(greeting=nil, team=nil)
     if greeting == "start"
       message = "...TaB-bot ONLINE! \n Team: #{@team.name} | Break Timer: #{@team.timer.interval}"
     elsif greeting == "stop"
