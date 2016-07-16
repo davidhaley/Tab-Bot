@@ -14,7 +14,7 @@ class Message
     end
     puts "performing message at #{Time.now}"
     HTTParty.post("https://hooks.slack.com/services/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", 
-    :body => { "channel": "#general", "username": "webhookbot", "text": "#{message}", "icon_emoji": ":ghost:"}.to_json,
+    :body => { "channel": "#general", "username": "TaB-bot", "text": "#{message}"}.to_json,
     :headers => { 'Content-Type' => 'application/json' } )
   end
 end
