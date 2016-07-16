@@ -6,7 +6,7 @@ class Message
 
   def perform(greeting=nil, team=nil, interval=nil)
     if greeting == "start"
-      message = "...TaB-bot ONLINE!\n\nWelcome #{team}! Get to work.. You'll be hearing from me in #{interval} <seconds!></seconds!>"
+      message = "...TaB-bot ONLINE!\n\nWelcome #{team}! Get to work.. You'll be hearing from me in #{interval} minutes!"
     elsif greeting == "stop"
       message = "...TaB-bot OFFLINE!"
     else
