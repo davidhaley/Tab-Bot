@@ -13,11 +13,13 @@ post '/gateway' do
   input = message.split(' ').map {|c| c.strip.downcase }
   action = input.shift
   interval = input.pop
-  team_name = input.join(" ")
+  # team_name = input.join(" ")
 
-  if team_name.nil? || team_name.strip.empty?
-    team_name = "team1"
-  end
+  # if team_name.nil? || team_name.strip.empty?
+  #   team_name = "team1"
+  # end
+
+  team_name = "team1"
 
   interval ||= 1
   interval = interval.to_i * 60
@@ -43,8 +45,8 @@ post '/gateway' do
       @worker.start
     when 'stop'
       Message.perform_in(1, "stop")
-      team.timer.update!(running: false)
-      team.timer.save!
+      team.timer.update(running: false)
+      team.timer.save
     else
       Message.perform_in(1, "help")
   end
