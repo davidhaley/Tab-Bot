@@ -24,7 +24,7 @@ post '/gateway' do
   case action
     when 'start'
 
-      puts "INTERVAL IS #{interval.inspect}"
+      greeting = "TaB-bot ONLINE! Team: #{team_name} | Break Timer: #{interval.to_s}"
 
       team.timer.running = true
       team.timer.save
@@ -32,8 +32,9 @@ post '/gateway' do
       Log.create(notified_at: DateTime.now)
       @worker = Worker.new(team, interval)
 
-      @worker.start
+      @worker.start(greeting)
     when 'stop'
+      @worker.stop(greeting)
       team.timer.running = false
       team.timer.save
   end
