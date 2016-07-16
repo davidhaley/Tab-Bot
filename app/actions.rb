@@ -13,7 +13,7 @@ post '/gateway' do
   team_name ||= "team1"
   interval ||= 1
 
-  interval = interval.to_i * 3600
+  interval = interval.to_i * 60
 
   team = Team.find_or_create_by(name: team_name)
 
