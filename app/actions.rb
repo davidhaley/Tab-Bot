@@ -48,6 +48,8 @@ post '/gateway' do
     Message.perform_in(1, "stop")
     team.timer.update(running: false)
     team.timer.save
+  when 'help'
+    Message.perform_in(1, "help")
   else
     Message.perform_in(1, "interval_count")
   end
