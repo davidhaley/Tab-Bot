@@ -28,22 +28,23 @@ post '/gateway' do
 
   case action
   when 'start'
-    if interval.to_s.size < 5
-      interval = interval.to_i * 60
-      if interval > 0
+  if interval.to_s.size < 5
+    interval = interval.to_i * 60
+    if interval > 0
 
-        team.timer.running = true
-        team.timer.save
+      team.timer.running = true
+      team.timer.save
 
-        Log.create(notified_at: DateTime.now)
-        @worker = Worker.new(team, interval)
+      Log.create(notified_at: DateTime.now)
+      @worker = Worker.new(team, interval)
 
-        Message.perform_in(1, "start", team_name, interval)
-        @worker.start
-      end
-    else
-      Message.perform_in(1, "interval_count")
+      Message.perform_in(1, "start", team_name, interval)
+      @worker.start
     end
+  else
+    Message.perform_in(1, "interval_count")
+    Message.perform_in(2, "help")
+  end
   when 'stop'
     Message.perform_in(1, "stop")
     team.timer.update(running: false)
@@ -51,6 +52,4 @@ post '/gateway' do
   else
     Message.perform_in(1, "help")
   end
-  Message.perform_in(1, "interval_count")
-  Message.perform_in(2, "help")
 end
