@@ -18,7 +18,7 @@ post '/gateway' do
 
   interval ||= 1
 
-  if interval.to_s.size < 5
+  if interval.to_s.size < 5 || action == "start" || "stop"
     interval = interval.to_i * 60
 
     team = Team.find_or_create_by(name: team_name)
