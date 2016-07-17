@@ -48,9 +48,8 @@ post '/gateway' do
         else
           Message.perform_in(1, "help")
       end
-    else
-      Message.perform_in(1, "interval_count")
-      Message.perform_in(2, "help")
     end
+    Message.perform_in(1, "interval_count")
+    Message.perform_in(2, "help")
   end
 end
