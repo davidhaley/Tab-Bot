@@ -18,20 +18,21 @@ post '/gateway' do
 
   interval ||= 1
 
-  if interval.to_s.size < 5 && action == "start" || "stop"
     interval = interval.to_i * 60
-    if interval > 0
 
-      team = Team.find_or_create_by(name: team_name)
+    team = Team.find_or_create_by(name: team_name)
 
-      if team.timer.nil?
-        team.timer = Timer.create(interval: interval)
-      else
-        team.timer.update(interval: interval)
-      end
+    if team.timer.nil?
+      team.timer = Timer.create(interval: interval)
+    else
+      team.timer.update(interval: interval)
+    end
 
-      case action
-        when 'start'
+    case action
+    when 'start'
+      if interval.to_s.size < 5
+        interval = interval.to_i * 60
+        if interval > 0
 
           team.timer.running = true
           team.timer.save
@@ -41,13 +42,16 @@ post '/gateway' do
 
           Message.perform_in(1, "start", team_name, interval)
           @worker.start
-        when 'stop'
-          Message.perform_in(1, "stop")
-          team.timer.update(running: false)
-          team.timer.save
-        else
-          Message.perform_in(1, "help")
+        end
+      else
+        Message.perform_in(1, "interval_count")
       end
+    when 'stop'
+      Message.perform_in(1, "stop")
+      team.timer.update(running: false)
+      team.timer.save
+    else
+      Message.perform_in(1, "help")
     end
   end
   Message.perform_in(1, "interval_count")
