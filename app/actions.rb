@@ -18,7 +18,7 @@ post '/gateway' do
 
   interval ||= 1
 
-  if interval.to_s.size < 5 || action == "start" || "stop"
+  if interval.to_s.size < 5 && action == "start" || "stop"
     interval = interval.to_i * 60
     if interval > 0
 
@@ -49,7 +49,7 @@ post '/gateway' do
           Message.perform_in(1, "help")
       end
     end
-    Message.perform_in(1, "interval_count")
-    Message.perform_in(2, "help")
   end
+  Message.perform_in(1, "interval_count")
+  Message.perform_in(2, "help")
 end
