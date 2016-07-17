@@ -17,6 +17,7 @@ post '/gateway' do
   team_name = "team"
 
   interval ||= 1
+  interval = interval.to_i * 60
 
   team = Team.find_or_create_by(name: team_name)
 
@@ -29,7 +30,6 @@ post '/gateway' do
   case action
   when 'start'
   if interval.to_s.size < 5
-    interval = interval.to_i * 60
     if interval > 0
 
       team.timer.running = true
