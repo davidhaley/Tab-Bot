@@ -42,13 +42,13 @@ post '/gateway' do
       @worker.start
     end
   else
-    Message.perform_in(1, "interval_count")
+    Message.perform_in(1, "help")
   end
   when 'stop'
     Message.perform_in(1, "stop")
     team.timer.update(running: false)
     team.timer.save
   else
-    Message.perform_in(1, "help")
+    Message.perform_in(1, "interval_count")
   end
 end
